@@ -1,0 +1,8 @@
+[package]
+name = "hangman"
+version = "1.0.0"
+authors = ["wmrabb <wmrabb@ncsu.edu>"]
+edition = "2018"
+
+[dependencies]
+clap = "2.33.0"
