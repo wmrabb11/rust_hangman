@@ -4,6 +4,8 @@ use std::fs;
 use std::io;
 use std::vec::Vec;
 
+mod draw;
+
 fn welcome() {
     println!("Welcome to the Rust CLI Hangman!");
     println!("You have 6 incorrect guesses to make before you lose!");
@@ -100,12 +102,15 @@ fn main() {
             incorrect_guesses.push(to_check);
             incorrect_guess_count -= 1;
             if incorrect_guess_count == 0 {
-                println!("[-] Oh no! You didn't solve it. You suck :/");
+                println!("[-] Oh no! You didn't solve it. Try Again!");
+                print_incorrect_guesses(&incorrect_guesses.as_slice().to_vec(), incorrect_guess_count);
+                draw::draw_hangman(incorrect_guess_count);
                 break;
             }
         }
 
         print_incorrect_guesses(&incorrect_guesses.as_slice().to_vec(), incorrect_guess_count);
+        draw::draw_hangman(incorrect_guess_count);
 
         solved = check_solved(&correct_guesses.as_slice().to_vec(), &mut contents);
         if solved {
